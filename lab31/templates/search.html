@@ -1,0 +1,31 @@
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <body>
+        <input type="text" placeholder="Student Name" id="sname"><br>
+        <input type="button" id="stBtn" value="Search">
+        <div id="res"></div>
+        <script>
+
+            $(document).ready(function() {
+          
+              $("#stBtn").click(function(){
+                var sname = $('#sname').val();
+                
+               
+                 $.ajax({
+                  url: 'http://127.0.0.1:8000/searchAJ/',
+                  type: 'POST',
+                  data: {sname: sname, csrfmiddlewaretoken: "{{ csrf_token }}",},
+                  success: function(data){
+                       $("#res").html(data);
+                      //window.location.href = data;
+                    
+                  }
+                });
+              });
+            
+          
+            });
+          </script>
+    </body>
+    </html>

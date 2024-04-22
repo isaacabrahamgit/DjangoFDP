@@ -1,0 +1,35 @@
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <body>
+        <form   method="post" action="">
+            {% csrf_token %}
+            <input type="text" name="sname" id="sname" placeholder="Student Name"><br>
+            <input type="text" name="cname" id="cname" placeholder="Course Name"><br>
+            <input type="button" value="Submit" id="submitBtn">
+
+        </form>
+        <script>
+
+            $(document).ready(function() {
+          
+              $("#submitBtn").click(function(){
+                var sname = $('#sname').val();
+                var cname = $('#cname').val();
+               
+                 $.ajax({
+                  url: 'http://127.0.0.1:8000/registerAJ/',
+                  type: 'POST',
+                  data: {sname: sname, cname:cname, csrfmiddlewaretoken: "{{ csrf_token }}",},
+                  success: function(data){
+                       alert(data);
+                      //window.location.href = data;
+                    
+                  }
+                });
+              });
+            
+          
+            });
+          </script>
+    </body>
+</html>

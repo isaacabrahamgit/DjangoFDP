@@ -1,0 +1,19 @@
+<h1>List of Students</h1>
+{% if students_list %}
+<table border>
+  {% for student in students_list %}
+    <tr>
+     <td>            <a href="student_detail/{{student.pk}}" target=_blank>
+        {{student.name}} </a>
+</td>
+     <td> Courses:
+     {% for course in student.sce.all %} 
+     <span>{{course.cname}}</span>
+     {% endfor %}
+     </td>
+     </tr>
+  {% endfor %}
+  </table>
+{% else %}
+  <p>There are no students.</p>
+{% endif %}       
