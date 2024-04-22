@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <h1>Select the course</h1>
+        <form   method="post" action="displaystudents/">
+            {% csrf_token %}
+            <select name="course" id="course">
+            {% for course in courses %}
+            
+                <option value="{{ course.id }}">{{ course.cname }}</option>
+            
+            {% endfor %}
+        </select>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
